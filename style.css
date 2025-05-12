@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins,sans-serif;
+}
+.flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 90px;
+    background: rgba(0,0,0,.5);
+    gap: 10%;
+    position: fixed;
+    z-index: 10;
+}
+.logo{
+    gap: 10px;
+    width: 30%;
+    position: relative;
+    justify-content: flex-start;
+    color: white;
+}
+.logo img{
+    width: 60px;
+    height: 60px;
+}
+.logo h1{
+    font-family: Playfair+Display;
+}
+.logo h1 span{
+    color: rgb(252, 76, 76);
+}
+
+nav ul{
+    gap: 10%;
+    width: 50%;
+    font-size: 1.5vmax;
+}
+
+nav ul li{
+    list-style: none;
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+    width: auto;
+}
+nav ul li::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-color: rgb(252, 76, 76);
+    height: 4px;
+    border-radius: 100px;
+    bottom: 7px;
+    transform: translateX(-100%);
+    transition: 0.5s;
+    transition-delay: 0.3s;
+}
+nav ul li:hover::before{
+    transform: translateX(0%);
+}
+nav ul li a{
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+}
+nav ul li a:hover{
+    color: rgb(252, 76, 76);
+}
+
+nav ul li.login{
+    background-color: white;
+    width: 100px;
+    border-radius: 20px;
+    margin-top: -7px;
+    transition: 0.5s;
+}
+nav ul li.login:hover{
+    background-color: white;
+    width: 100px;
+    border-radius: 20px;
+    margin-top: -7px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,.5);
+    transform: translateY(-4px);
+    background-color: #AB87FF;
+}
+nav ul li.login::before{
+    display: none;
+}
+nav ul li.login:hover a{
+    color: white;
+}
+nav ul li.login a{
+    color: black;
+}
