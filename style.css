@@ -17,11 +17,16 @@ nav{
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 90px;
-    background: rgba(0,0,0,.5);
+    height: 120px;
+    background: rgba(0,0,0,0);
     gap: 10%;
     position: fixed;
     z-index: 10;
+    transition: 0.5s;
+}
+nav.scrolled {
+    background-color: rgba(0,0,0,.8);
+    height: 90px;
 }
 .logo{
     gap: 10px;
@@ -36,6 +41,7 @@ nav{
 }
 .logo h1{
     font-family: Playfair+Display;
+    font-size: 3vw;
 }
 .logo h1 span{
     color: rgb(252, 76, 76);
@@ -212,4 +218,24 @@ nav ul li.login a{
   rgb(240, 252, 255) 20%, 
   white 100%);
     position: relative;
+    flex-direction: column;
+}
+.goal .container{
+    width: 80%;
+    gap: 70px;
+    color: rgb(40,40,40);
+}
+
+.goal .container .animated{
+    width: 300vw;
+    height: 100%;
+}
+.goal .container .animated .mainimg{
+    width: 100%;
+}
+
+.features{
+    width: 100%;
+    height: 100vh;
+    align-items: flex-start;
 }

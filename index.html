@@ -31,10 +31,27 @@
 
     <div class="goal flexbox">
         <h1>OUR GOAL</h1>
+        <div class="container flexbox" >
+          <p style="text-align: justify;font-size: 1.4vmax;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto reiciendis aliquid molestias accusamus voluptatem accusantium adipisci. Deserunt, tenetur laboriosam, perferendis iure ut voluptatem excepturi fugiat adipisci reprehenderit rem debitis beatae.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ut omnis porro deserunt ratione, excepturi, necessitatibus perspiciatis quos delectus est a laborum voluptatem, minus qui laudantium odio dolore minima nihil?</p>
+          <div class="animated flexbox">
+          <img src="images/goal.png" class="mainimg" alt="">
+          </div>
+        </div>
+    </div>
 
+    <div class="features flexbox">
+      <h1>FEATURES</h1>
     </div>
 </body>
   <script>
+    window.addEventListener("scroll", function () {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 50) { // adjust threshold as needed
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
     const words = ["Students", "Teachers", "Admins"];
     let wordIndex = 0;
     let letterIndex = 0;
@@ -52,7 +69,7 @@
           setTimeout(typeEffect, 400);
         } else {
           isDeleting = true;
-          setTimeout(typeEffect, 1000); // pause before deleting
+          setTimeout(typeEffect, 1000);
         }
       } else {
         if (letterIndex > 0) {
@@ -61,7 +78,7 @@
         } else {
           isDeleting = false;
           wordIndex = (wordIndex + 1) % words.length;
-          setTimeout(typeEffect, 500); // pause before next word
+          setTimeout(typeEffect, 500);
         }
       }
     }
