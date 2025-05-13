@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Track&Mark</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
 </head>
 <body>
     <nav>
@@ -19,5 +21,51 @@
             <li class="login flexbox"><a href="#">Login</a></li>
         </ul>
     </nav>
+
+    <div class="land-container flexbox">
+        <h1>Track. Analyze. Optimize.</h1>
+
+        <h2>Attendance Tracker for <span id="typed-span"  style="color: #AB87FF; text-decoration: underline;">Students</span></h2>
+        <button>Get Started</button>
+    </div>
+
+    <div class="goal flexbox">
+        <h1>OUR GOAL</h1>
+
+    </div>
 </body>
+  <script>
+    const words = ["Students", "Teachers", "Admins"];
+    let wordIndex = 0;
+    let letterIndex = 0;
+    let isDeleting = false;
+    const span = document.getElementById("typed-span");
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+      const visibleText = currentWord.substring(0, letterIndex);
+      span.textContent = visibleText;
+
+      if (!isDeleting) {
+        if (letterIndex < currentWord.length) {
+          letterIndex++;
+          setTimeout(typeEffect, 400);
+        } else {
+          isDeleting = true;
+          setTimeout(typeEffect, 1000); // pause before deleting
+        }
+      } else {
+        if (letterIndex > 0) {
+          letterIndex--;
+          setTimeout(typeEffect, 50);
+        } else {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(typeEffect, 500); // pause before next word
+        }
+      }
+    }
+
+    typeEffect();
+  </script>
 </html>
