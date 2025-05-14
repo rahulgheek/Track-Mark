@@ -26,7 +26,7 @@ nav{
 }
 nav.scrolled {
     background-color: rgba(0,0,0,.8);
-    height: 90px;
+    height: 70px;
 }
 .logo{
     gap: 10px;
@@ -237,5 +237,92 @@ nav ul li.login a{
 .features{
     width: 100%;
     height: 100vh;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: baseline;
+    flex-direction: column;
+    background: url(images/giphy.gif);
+    color: white;
 }
+
+.feature{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 80%;
+    height: 80%;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+    gap: 50px;
+}
+
+.feature .card{
+    width: 45%;
+    height: 100%;
+    margin-top: 0px;
+    flex-direction: column;
+    transition: 0.5s;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: rgb(36, 85, 247);
+}
+.feature .card .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f6ff;
+    width: 200px;
+    height: 200px;
+    overflow: none;
+    position: relative;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.feature .card .box img{
+    position: absolute;
+    width: 50%;
+}
+.feature .card p{
+    width: 30vw;
+    text-align: justify;
+    position: absolute;
+    margin-top: 6vw;
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.5s;
+    transition-delay: 0.2s;
+}
+.feature .card h2{
+    position: absolute;
+    margin-top: -10%;
+    margin-left: 10%;
+    font-size: 2.5vw;
+    opacity: 0;
+    transition: 0.5s;
+}
+.feature .card{
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.feature .card .box{
+    margin-top:-30%;
+    margin-left: -50%;
+    transform: scale(0.7);
+}
+.feature .card h2,.feature .card p{
+    opacity: 1;
+}
+
+.feature-img {
+  transition: transform 1s ease-out;
+  will-change: transform;
+  transform: translateX(0) translateY(0) scale(1); /* Final position */
+}
+
+.feature-img.offscreen {
+  transform: var(--start-transform);
+}
+

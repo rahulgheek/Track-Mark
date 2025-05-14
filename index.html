@@ -6,7 +6,12 @@
     <title>Track&Mark</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
+    <style>
+        /* Remove transitions for scroll-based animation */
+        .feature-img {
+            will-change: transform;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -41,6 +46,36 @@
 
     <div class="features flexbox">
       <h1>FEATURES</h1>
+      <div class="feature">
+        <div class="card flexbox">
+          <div class="box">
+            <img src="images/i1.png" class="feature-img offscreen" style="transform: translateX(70vw) translateY(-740%) scale(0.5);" alt="">
+          </div>
+          <h2>feature 1</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, provident quasi ab mollitia, facilis voluptas magni enim, error reprehenderit fugiat quos in debitis dignissimos esse optio quam sint aperiam obcaecati?</p>
+        </div>
+        <div class="card flexbox">
+          <div class="box">
+            <img src="images/i2.png" class="feature-img offscreen" style="transform: translateX(0vw) translateY(-700%) scale(0.5);" alt="">
+          </div>
+          <h2>feature 1</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, provident quasi ab mollitia, facilis voluptas magni enim, error reprehenderit fugiat quos in debitis dignissimos esse optio quam sint aperiam obcaecati?</p>
+        </div>
+        <div class="card flexbox">
+          <div class="box">
+            <img src="images/i3.png" class="feature-img offscreen" style="transform: translateX(95vw) translateY(-1100%) scale(0.5);" alt="">
+          </div>
+          <h2>feature 1</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, provident quasi ab mollitia, facilis voluptas magni enim, error reprehenderit fugiat quos in debitis dignissimos esse optio quam sint aperiam obcaecati?</p>
+        </div>
+        <div class="card flexbox">
+          <div class="box">
+            <img src="images/i4.png" class="feature-img offscreen" style="transform: translateX(27vw) translateY(-1200%) scale(0.5);" alt="">
+          </div>
+          <h2>feature 1</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, provident quasi ab mollitia, facilis voluptas magni enim, error reprehenderit fugiat quos in debitis dignissimos esse optio quam sint aperiam obcaecati?</p>
+        </div>
+      </div>
     </div>
 </body>
   <script>
@@ -84,5 +119,94 @@
     }
 
     typeEffect();
+
+  // Feature images scroll-based animation
+  const featureSection = document.querySelector('.features');
+  const featureImages = document.querySelectorAll('.feature-img');
+  
+  // Store original transforms for each image
+  const imageTransforms = [];
+  featureImages.forEach(img => {
+    // Extract transform from style attribute
+    const style = img.getAttribute('style');
+    const transform = style.match(/transform: ([^;]+)/)[1];
+    
+    // Store the original transform string
+    imageTransforms.push(transform);
+  });
+
+  // Function to update image positions based on scroll
+  function updateImagePositions() {
+    // Get the feature section's position relative to viewport
+    const sectionRect = featureSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Calculate progress based on section's entry into viewport
+    // Progress goes from 0 (section just entering viewport) to 1 (section fully in viewport)
+    // Use a shorter distance for the animation (25% of window height)
+    const animationDistance = windowHeight * 0.25; // Animation completes in 25% of screen height
+    
+    // Calculate how far the section has entered the viewport
+    const sectionEntry = windowHeight - sectionRect.top;
+    
+    // Normalize to 0-1 range where:
+    // 0 = section just touching bottom of viewport
+    // 1 = section has entered by animationDistance or more
+    const progress = Math.min(Math.max(sectionEntry / animationDistance, 0), 1);
+    
+    // Update each image based on scroll progress
+    featureImages.forEach((img, index) => {
+      if (progress >= 0 && progress <= 1) {
+        // Calculate the transform based on the progress
+        // At progress = 0, use original transform
+        // At progress = 1, use transform: translateX(0) translateY(0) scale(1)
+        if (progress === 0) {
+          // Use original transform exactly
+          img.style.transform = imageTransforms[index];
+        } else if (progress === 1) {
+          // Final position at center
+          img.style.transform = 'translateX(0) translateY(0) scale(1)';
+        } else {
+          // For progress between 0 and 1, mix CSS transform values directly
+          // Extract values from original transform
+          const origTransform = imageTransforms[index];
+          
+          // Extract translateX (assuming vw units)
+          let txMatch = origTransform.match(/translateX\(([^)]+)vw\)/);
+          let origTx = txMatch ? parseFloat(txMatch[1]) : 0;
+          let txUnit = txMatch ? 'vw' : 'px';
+          
+          // Extract translateY (assuming % units)
+          let tyMatch = origTransform.match(/translateY\(([^)]+)%\)/);
+          let origTy = tyMatch ? parseFloat(tyMatch[1]) : 0;
+          let tyUnit = tyMatch ? '%' : 'px';
+          
+          // Extract scale
+          let scaleMatch = origTransform.match(/scale\(([^)]+)\)/);
+          let origScale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+          
+          // Calculate interpolated values
+          let currentTx = origTx * (1 - progress);
+          let currentTy = origTy * (1 - progress);
+          let currentScale = origScale + (1 - origScale) * progress;
+          
+          // Apply the interpolated transform with original units
+          img.style.transform = `translateX(${currentTx}${txUnit}) translateY(${currentTy}${tyUnit}) scale(${currentScale})`;
+        }
+      } else if (progress < 0) {
+        // Before section is visible, use original transform
+        img.style.transform = imageTransforms[index];
+      } else if (progress > 1) {
+        // After section is fully scrolled past, use final centered position
+        img.style.transform = 'translateX(0) translateY(0) scale(1)';
+      }
+    });
+  }
+
+  // Listen for scroll events
+  window.addEventListener('scroll', updateImagePositions);
+  
+  // Initial call to set positions
+  updateImagePositions();
   </script>
 </html>
