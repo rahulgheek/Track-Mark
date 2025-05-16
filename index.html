@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Track&Mark</title>
     <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
         /* Remove transitions for scroll-based animation */
@@ -76,6 +77,63 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, provident quasi ab mollitia, facilis voluptas magni enim, error reprehenderit fugiat quos in debitis dignissimos esse optio quam sint aperiam obcaecati?</p>
         </div>
       </div>
+    </div>
+
+    <div class="benefits flexbox">
+      <h1>Benefits</h1>
+
+      <ul class="flexbox"><li class="active">Students</li>
+      <li>Teachers</li>
+      <li>Admins</li></ul>
+
+      <div class="container">
+        <div class="template flexbox">
+          <h1>Students</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic eos quas tenetur aperiam dolore delectus ea qui, beatae quo, quis expedita dicta at dolor! Perspiciatis ipsam architecto a quod repellendus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas repudiandae itaque laudantium? Soluta facere nesciunt tempora perspiciatis a nisi </p>
+          <ol style="width: 67%;"><li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </li>
+          <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
+          <li> Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolore nemo, </li></ol>
+        </div>
+
+        <div class="template flexbox" style="display: none;">
+          <h1>Teachers</h1>
+          <p>Empower your classroom management with our attendance tracking system. Track&Mark provides real-time insights into student attendance patterns, helping you identify at-risk students and improve engagement. Our intuitive dashboard makes taking attendance quick and efficient, giving you more time to focus on teaching.</p>
+          <ol style="width: 67%;">
+            <li>Automated attendance reports with customizable metrics</li>
+            <li>Instant notifications for absent students and pattern recognition</li>
+            <li>Seamless integration with existing school management systems</li>
+          </ol>
+        </div>
+
+        <!-- Admin section (to be added) -->
+        <div class="template flexbox" style="display: none;">
+          <h1>Administrators</h1>
+          <p>Gain comprehensive oversight of your institution's attendance with powerful administrative tools. Track&Mark delivers actionable insights through detailed analytics, helping you make data-driven decisions to improve overall attendance rates. Monitor trends across departments, classes, or specific time periods with our advanced reporting capabilities.</p>
+          <ol style="width: 67%;">
+            <li>Institutional-level attendance dashboards with exportable reports</li>
+            <li>Customizable attendance policies and automated compliance tracking</li>
+            <li>Comprehensive analytics to identify attendance trends and intervention opportunities</li>
+          </ol>
+        </div>
+
+        <div class="images flexbox">
+          <img src="images/school1.png" width="20%" style="transform: translateX(-40%) translateY(-20%);" alt="">
+          <img src="images/school2.png" width="40%" style="transform: translateX(40%) translateY(10%);">
+        </div>
+        <div class="images flexbox" style="display: none;">
+          <img src="images/teacher1.png" width="25%" style="transform: translateX(-40%) translateY(-20%);" alt="">
+          <img src="images/teacher2.jpg" width="40%" height="100%" style=" border-radius: 50%; transform: translateX(40%) translateY(10%); ">
+        </div>
+        <div class="images flexbox" style="display: none;">
+          <img src="images/admin1.webp" width="30%" style="transform: translateX(-40%) translateY(-20%);" alt="">
+          <img src="images/admin2.png" width="30%" style="transform: translateX(20%) translateY(10%); filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));">
+        </div>
+
+        <div class="effect">
+          
+        </div>
+      </div>
+
     </div>
 </body>
   <script>
@@ -208,5 +266,59 @@
   
   // Initial call to set positions
   updateImagePositions();
+
+  // Benefits section transitions
+  const benefitTabs = document.querySelectorAll('.benefits ul li');
+  const benefitTemplates = document.querySelectorAll('.benefits .template');
+  const benefitImages = document.querySelectorAll('.benefits .images');
+
+  function fadeOut(element) {
+    return new Promise(resolve => {
+      element.style.opacity = '0';
+      element.style.transition = 'opacity 0.5s ease';
+      setTimeout(resolve, 500);
+    });
+  }
+
+  function fadeIn(element) {
+    element.style.opacity = '1';
+    element.style.transition = 'opacity 0.5s ease';
+  }
+
+  async function showBenefitSection(index) {
+    // Hide all templates and images with fade
+    for (let i = 0; i < benefitTemplates.length; i++) {
+      if (benefitTemplates[i].style.display !== 'none') {
+        await fadeOut(benefitTemplates[i]);
+        await fadeOut(benefitImages[i]);
+      }
+      benefitTemplates[i].style.display = 'none';
+      benefitImages[i].style.display = 'none';
+    }
+
+    // Show selected template and images with fade
+    benefitTemplates[index].style.display = 'flex';
+    benefitImages[index].style.display = 'flex';
+    benefitTemplates[index].style.opacity = '0';
+    benefitImages[index].style.opacity = '0';
+    
+    // Trigger fade in
+    requestAnimationFrame(() => {
+      fadeIn(benefitTemplates[index]);
+      fadeIn(benefitImages[index]);
+    });
+  }
+
+  // Add click handlers for benefit tabs
+  benefitTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      benefitTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      showBenefitSection(index);
+    });
+  });
+
+  // Initialize first benefit section
+  showBenefitSection(0);
   </script>
 </html>
