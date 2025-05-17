@@ -1,0 +1,111 @@
+body {
+  background-image: url("https://scontent.fluh2-1.fna.fbcdn.net/v/t1.15752-9/496510412_1432771758090258_4377922795872115929_n.png?_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_ohc=jEQ_pJV0UewQ7kNvwGIqstv&_nc_oc=AdkuMKFx8cYz_TYV5eVzeVn_p6IzSzLtIx0Mxwsg7lYrC2cGRAPPOYlhWGPJ7hXOvMcfFogMzu6Yodb8rTF7S98w&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fluh2-1.fna&oh=03_Q7cD2QF-eNbwaZcsFiqoER6c5tS48F92pv8vymN6kkH3yQl7SQ&oe=684EEE10");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 24px;
+}
+
+
+
+.subtitle {
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  width: 360px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  text-align: center;
+}
+
+
+.login-box p {
+  color: white;
+}
+
+.input-box {
+  position: relative;
+  margin: 20px 0;
+  color: white;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-box label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  color: whitesmoke;
+}
+
+.input-box input:focus+label,
+.input-box input:valid+label {
+  top: -10px;
+  left: 5px;
+  font-size: 12px;
+  color: #333;
+  background: linear-gradient(100deg, #EDEDE9, #D5BDAF);
+  padding: 0 5px;
+}
+
+.show-password {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 14px;
+  color: white;
+}
+
+button {
+  background-color: lightblue;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #9facac;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
